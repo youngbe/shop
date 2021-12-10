@@ -1,0 +1,52 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    border-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    /*align-items: center;*/
+    flex-shrink: 0;
+    scroll-behavior: smooth;
+    background-color: #ffffff;
+}
+
+head, meta, link, script
+{
+    display: none;
+}
+
+html
+{
+    min-width: 1100px;
+}
+
+body
+{
+    align-items: center;
+}
+
+#header
+{
+    width: 100%;
+}
+
+#header-main
+{
+    aspect-ratio: 12;
+}
+
+#main
+{
+    width:96%;
+}
+
+#footer
+{
+    width: 100%;
+}
+
+#footer-main
+{
+    aspect-ratio: 12;
+}
