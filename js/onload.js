@@ -29,6 +29,7 @@ function layout()
     document.getElementById('main').innerHTML+=  "document.documentElement.scrollWidth:"+document.documentElement.scrollWidth +"<br>";
     document.getElementById('main').innerHTML+=  "document.documentElement.style.width:"+document.documentElement.style.width +"<br>";
     document.getElementById('main').innerHTML+="window.devicePixelRatio" + window.devicePixelRatio;
+    document.body.style.fontSize=document.documentElement.clientWidth*0.01+'px';
 }
 
 
