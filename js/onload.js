@@ -12,7 +12,9 @@ function layout()
     }
     document.getElementById('nav').style.maxWidth=document.getElementById('footer-main').style.maxWidth=width_max+'px';
     document.getElementById('main').style.maxWidth=width_max*0.96+'px';
-    document.body.style.fontSize=width_max*0.01+'px';
+    let body_width=document.body.clientWidth;
+    document.body.style.fontSize=body_width*0.01+'px';
+    document.getElementById('head-shader').style.height=body_width*0.06+'px';
 
 
 
