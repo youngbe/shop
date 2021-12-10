@@ -33,13 +33,20 @@ body
     justify-content: center;
 }
 
+.opc_background
+{
+    background:  rgba(0,0,0,0);
+}
+
 #header
 {
     width: 100%;
+    align-items: center;
 }
 
 #header-main
 {
+    width: 100%;
     aspect-ratio: 12;
 }
 

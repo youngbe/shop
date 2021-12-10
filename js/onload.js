@@ -10,8 +10,19 @@ function layout()
     {
         width_max=screen.height*16/9;
     }
-    document.getElementById('header-main').style.maxWidth=document.getElementById('footer-main').style.maxWidth=width_max+'px';
+    document.getElementById('nav').style.maxWidth=document.getElementById('footer-main').style.maxWidth=width_max+'px';
     document.getElementById('main').style.maxWidth=width_max*0.96+'px';
+    document.body.style.fontSize=width_max*0.01+'px';
+
+
+
+
+
+
+
+
+
+
 
     document.getElementById('main').innerHTML="screen.width:"+screen.width+"<br>";
     document.getElementById('main').innerHTML+="screen.availWidth:"+screen.availWidth+"<br>";
@@ -29,7 +40,6 @@ function layout()
     document.getElementById('main').innerHTML+=  "document.documentElement.scrollWidth:"+document.documentElement.scrollWidth +"<br>";
     document.getElementById('main').innerHTML+=  "document.documentElement.style.width:"+document.documentElement.style.width +"<br>";
     document.getElementById('main').innerHTML+="window.devicePixelRatio" + window.devicePixelRatio;
-    document.body.style.fontSize=document.documentElement.clientWidth*0.01+'px';
 }
 
 
