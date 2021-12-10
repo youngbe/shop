@@ -13,28 +13,48 @@
             </video>
             <div id="head-shader" style="width:100%; position:absolute; background: linear-gradient(rgba(0,0,0,.4),transparent)">
             </div>
-            <div id="nav" style="position: absolute;width: 100%;max-width: 1706.67px;aspect-ratio: 30;" class="opc_background mid">
-                <div id="nav_content" style="width:97%;aspect-ratio: 45.6;flex-flow: row;justify-content: space-between;align-items: stretch;" class="opc_background">
+            <div id="nav" style="position: absolute;width: 100%;max-width: 1706.67px;aspect-ratio: 30;" class="opc mid">
+                <div id="nav_content" style="width:97%;aspect-ratio: 45.6;flex-flow: row;justify-content: space-between;align-items: stretch;" class="opc">
                     <div id="nav-left" style="
-    width: 25%;
-    display: grid;
-    grid-template-rows: 100%;
-    grid-template-columns: 10% 10% 10%;
-    font-size: 14px;
-    text-shadow: 0 1px 1px rgb(0 0 0 / 30%);
-    color: #fff;
-" class="opc_background">
-                        <a class="mid opc_background">主站</a>
-                        <a class="mid opc_background">按钮1</a>
-                        <a class="mid opc_background">按钮2</a>
+                             width: 25%;
+                             display: grid;
+                             grid-template-rows: 100%;
+                             grid-template-columns: 13% 13% 13%;
+                             font-size: 87.5%;
+                             text-shadow: 0 1px 1px rgb(0 0 0 / 30%);
+                             color: #fff;
+                             " class="opc">
+                        <a class="mid opc">主站</a>
+                        <a class="mid opc">按钮1</a>
+                        <a class="mid opc">按钮2</a>
                     </div>
-                    <div id="nav-center" style="
-    width: 30%;
-" class="opc_background">
-                    </div>
+                    <form id="nav-center" style="
+                                         width: 30%;
+                                         padding-left: 0.5%;
+                                         padding-right: 0.5%;
+                                         flex-flow: row;
+                                         justify-content: space-between;
+                                         " class="radius" radius="height 0.3">
+                        <input type="text" name="keyword" class="opc">
+                        <input type="submit" class="mid opc">
+                    </form>
                     <div id="nav-right" style="
-    width: 25%;
-" class="opc_background">
+                                               flex-flow: row-reverse;
+                                               width: 25%;
+                                               font-size: 87.5%;
+                                               text-shadow: 0 1px 1px rgb(0 0 0 / 30%);
+                                               color: #fff;
+                                               " class="opc">
+                        <a style="
+                                  width: 15%;
+                                  " class="mid opc">
+                            注册
+                        </a>
+                        <a style="
+                                   width: 15%;
+                                   " class="mid opc">
+                            登录
+                        </a>
                     </div>
                 </div>
             </div>

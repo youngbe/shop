@@ -17,6 +17,26 @@ function layout()
     document.getElementById('head-shader').style.height=body_width*0.06+'px';
 
 
+    /*let i = document.getElementById('head-shader');
+    document.getElementById('main').innerHTML+=typeof(i);
+    document.getElementById('main').innerHTML+='<br>'+i;
+    i = document.getElementsByClassName('mid')[0];
+
+    document.getElementById('main').innerHTML+=typeof(i);
+    document.getElementById('main').innerHTML+='<br>'+i;
+*/
+    for (let i of document.getElementsByClassName('radius') )
+    {
+        let x=i.getAttribute('radius').split(' ');
+        if ( x[0] == "width" )
+        {
+            i.style.borderRadius=i.parentElement.clientWidth*x[1]+'px';
+        }
+        else
+        {
+            i.style.borderRadius=i.parentElement.clientHeight*x[1]+'px';
+        }
+    }
 
 
 
@@ -25,6 +45,8 @@ function layout()
 
 
 
+
+/*
 
     document.getElementById('main').innerHTML="screen.width:"+screen.width+"<br>";
     document.getElementById('main').innerHTML+="screen.availWidth:"+screen.availWidth+"<br>";
@@ -42,6 +64,7 @@ function layout()
     document.getElementById('main').innerHTML+=  "document.documentElement.scrollWidth:"+document.documentElement.scrollWidth +"<br>";
     document.getElementById('main').innerHTML+=  "document.documentElement.style.width:"+document.documentElement.style.width +"<br>";
     document.getElementById('main').innerHTML+="window.devicePixelRatio" + window.devicePixelRatio;
+*/
 }
 
 
