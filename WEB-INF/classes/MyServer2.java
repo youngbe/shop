@@ -1,3 +1,4 @@
+import db.User;
 import jakarta.persistence.*;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.http.HttpServlet;
@@ -8,9 +9,6 @@ import jakarta.servlet.ServletException;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.List;
-
-import jakarta.servlet.ServletConfig;
-import org.hibernate.Transaction;
 
 @WebServlet(value="/ig")
 public class MyServer2 extends HttpServlet

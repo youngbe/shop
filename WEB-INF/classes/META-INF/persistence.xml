@@ -7,7 +7,7 @@
 
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-    <class>User</class>
+    <class>db.User</class>
 
     <properties>
       <property name="jakarta.persistence.jdbc.driver"
