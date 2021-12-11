@@ -1,9 +1,10 @@
 function send()
 {
     const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", 'http://192.168.79.128:8080/untitled_war_exploded/ig2');
-    //xmlHttp.send( "abcd" );
-    xmlHttp.send( JSON.stringify({ "email": "hello@user.com", "response": { "name": "Tester" } }) );
+    xmlHttp.open("POST", 'api/regist');
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.send( JSON.stringify({"nick_name": "sdfdsfsd", "password": "asdasd"}
+) );
 
     xmlHttp.onreadystatechange = (e) => {
         if (xmlHttp.readyState==4)
