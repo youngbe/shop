@@ -27,5 +27,9 @@ function global_layout()
             i.style.borderRadius=i.parentElement.clientHeight*x[1]+'px';
         }
     }
+    for (let i of document.getElementsByClassName('fix_src_root') )
+    {
+        i.src=root_path+i.getAttribute("src");
+    }
     return body_width;
 }

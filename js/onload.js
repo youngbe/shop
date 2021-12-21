@@ -1,7 +1,6 @@
 function this_layout(body_width)
 {
     document.getElementById('head-shader').style.height=body_width*0.06+'px';
-    document.getElementById('header_video').src=root_path+'src/header.webm';
     document.getElementById('header_video').style.height=body_width*0.094+'px';
 }
 

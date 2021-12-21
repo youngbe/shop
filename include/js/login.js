@@ -12,4 +12,6 @@ function is_login()
 
 function logout()
 {
+    document.cookie="user=; Max-Age=0; path=" + root_path;
+    location.replace(root_path);
 }
