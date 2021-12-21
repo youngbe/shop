@@ -3,18 +3,8 @@ root='..';
 
 function get_current_path()
 {
-    let temp=location.pathname.split('/').filter(
-        function (item)
-        {
-            return item !== '';
-        }
-    );
-    let ret='/';
-    for (let i of temp)
-    {
-        ret+=i+'/';
-    }
-    return ret;
+    let path=location.pathname;
+    return path.substring(0, path.lastIndexOf('/')+1);
 }
 function get_root_path( cur, root )
 {
