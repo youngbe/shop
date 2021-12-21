@@ -12,11 +12,8 @@ function is_login()
 
 function logout()
 {
-    if ( root_path === '/' )
-    {
-        document.cookie="user=; Max-Age=0; path=/";
-    }
-    else
+    document.cookie="user=; Max-Age=0; path=" + root_path;
+    if ( root_path !== '/' )
     {
         document.cookie="user=; Max-Age=0; path=" + root_path.substr(0, root_path.length-1);
     }
