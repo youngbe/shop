@@ -4,11 +4,11 @@ function global_layout()
     if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))
     {
         document.documentElement.style.width=screen.width*devicePixelRatio+"px";
-        width_max=screen.height*devicePixelRatio*16/9;
+        width_max=screen.height*devicePixelRatio*2.2;
     }
     else
     {
-        width_max=screen.height*16/9;
+        width_max=screen.height*2.2;
     }
     document.getElementById('nav').style.maxWidth=document.getElementById('footer-main').style.maxWidth=width_max+'px';
     document.getElementById('main').style.maxWidth=width_max*0.96+'px';
@@ -27,4 +27,5 @@ function global_layout()
             i.style.borderRadius=i.parentElement.clientHeight*x[1]+'px';
         }
     }
+    return body_width;
 }

@@ -47,6 +47,4 @@ function get_root_path( cur, root )
     return ret;
 }
 const current_path=get_current_path();
-console.log(current_path);
 const root_path=get_root_path(current_path, root);
-console.log(root_path);
