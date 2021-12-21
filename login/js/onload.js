@@ -41,10 +41,14 @@ function send()
                     alert("您已经登陆！");
                     location.replace(root_path);
                 }
+                else
+                {
+                    alert("登陆失败：错误码："+xmlHttp.response.ret);
+                }
             }
             else
             {
-                alert("登陆失败："+xmlHttp.status);
+                alert("登陆失败：http error:"+xmlHttp.status);
             }
         }
     }
