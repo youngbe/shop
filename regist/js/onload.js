@@ -34,6 +34,7 @@ function send()
                 else
                 {
                     alert("注册成功！用户id为："+xmlHttp.response.id+"\n请记住您的id");
+                    location.replace(root_path);
                 }
             }
             else
