@@ -44,11 +44,11 @@ body
     align-items: center;
 }
 
-#header-main
+/*#header-main
 {
     width: 100%;
     aspect-ratio: 12;
-}
+}*/
 
 #main
 {
@@ -60,7 +60,7 @@ body
     width: 100%;
 }
 
-#footer-main
+/*#footer-main
 {
     aspect-ratio: 12;
-}
+}*/
