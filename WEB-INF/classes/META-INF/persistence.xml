@@ -14,7 +14,7 @@
                 value="org.mariadb.jdbc.Driver" />
 
       <property name="jakarta.persistence.jdbc.url"
-                value="jdbc:mysql://localhost/test?localSocket=/var/run/mysqld/mysqld.sock" />
+                value="jdbc:mysql://localhost/test?localSocket=/var/run/mysqld/mysqld.sock&amp;allowPublicKeyRetrieval=true" />
 
       <property name="jakarta.persistence.jdbc.user"
                 value="debian-sys-maint" />

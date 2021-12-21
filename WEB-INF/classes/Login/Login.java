@@ -65,6 +65,7 @@ public class Login extends HttpServlet
                     output.ret = 0;
                     Cookie cookie=new Cookie("user", input.id.toString() + '-' + DigestUtils.md5Hex(req.getRemoteAddr() + req.getHeader("User-Agent") + input.password));
                     cookie.setMaxAge(60*60*24*365);
+                    cookie.setAttribute("SameSite", "Strict");
                     cookie.setPath(req.getContextPath());
                     resp.addCookie(cookie);
                 }
