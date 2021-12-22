@@ -6,10 +6,10 @@ function this_layout(body_width)
 
 function real_onload()
 {
-    if ( get_cookies().get_value( 'user' ) != null )
+    if ( get_cookies().get_value( 'user' ) == null )
     {
-        alert("您已经登陆！");
-        location.replace(root_path);
+        alert("您尚未登陆！");
+        location.replace(root_path+'login');
     }
 }
 
@@ -21,7 +21,18 @@ function add_item()
     xmlHttp.setRequestHeader("Content-Type", "multipart/form-data");
 
     let form_data=new FormData();
-    form_data.append("file", form["img"].files);
+    form_data.append("name", form["name"].value);
+    form_data.append("price", form['price'].value);
+    form_data.append("stock", form["stock"].value);
+    {
+        let index=0;
+        for (let i of form["img"].files)
+        {
+            form_data.append("file"+index, i);
+            index++;
+        }
+        form_data.append("files_num", index);
+    }
 
 
 
