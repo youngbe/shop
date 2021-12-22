@@ -18,7 +18,6 @@ function add_item()
     let form=document.forms['add_item'];
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST",  root_path+'api/add_item');
-    xmlHttp.setRequestHeader("Content-Type", "multipart/form-data");
 
     let form_data=new FormData();
     form_data.append("name", form["name"].value);
