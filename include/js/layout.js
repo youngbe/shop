@@ -27,9 +27,12 @@ function global_layout()
             i.style.borderRadius=i.parentElement.clientHeight*x[1]+'px';
         }
     }
-    for (let i of document.getElementsByClassName('fix_src_root') )
+    for (let i of document.getElementsByClassName('set_root') )
     {
-        i.src=root_path+i.getAttribute("src");
+        for (let i2 of i.getAttribute("set_root_items").split(' '))
+        {
+            i.setAttribute(i2)=root_path+i.getAttribute("i2");
+        }
     }
     return body_width;
 }
