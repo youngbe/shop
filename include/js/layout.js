@@ -31,8 +31,6 @@ function global_layout()
     {
         for (let i2 of i.getAttribute("set_root_items").split(' '))
         {
-            console.log(i2);
-            console.log(root_path+i.getAttribute(i2));
             i.setAttribute(i2, root_path+i.getAttribute(i2));
         }
     }
