@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="UTF-8">
+        <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script defer type="text/javascript" src="js/base.js"></script>
+        <script defer type="text/javascript" src="../include/js/cookie.js"></script>
+        <script defer type="text/javascript" src="../include/js/layout.js"></script>
+        <script defer type="text/javascript" src="../include/js/md5.min.js"></script>
+        <script defer type="text/javascript" src="js/onload.js"></script>
+        <link rel="stylesheet" type="text/css" href="../include/css/global.css">
+    </head>
+    <body>
+        <div id="header">
+        </div>
+        <div id="main">
+            <!--<form name="add_item" action="javascript:add_item();" method="post">-->
+            <form name="add_item" enctype="multipart/form-data" method="post" action="/api/test">
+                商品名称：<input type="text" name="name">
+                价格：<input type="text" name="price">
+                库存：<input type="text" name="">
+                商品预览图：<input type="file" multiple="true" name="img">
+                <input type="submit">
+            </form>
+        </div>
+        <div id="footer">
+        </div>
+    </body>
+</html>
