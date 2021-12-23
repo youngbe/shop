@@ -4,9 +4,6 @@ import db.User;
 import cookie.Cookie_manager;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Persistence;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,16 +17,16 @@ public class Login_manager
         String[] value = cookie.getValue().split("-");
         if (value.length !=2)
         {
-            Cookie_manager.remove_cookie(cookie, resp);
+            Cookie_manager.remove_cookie("user", req, resp);
             return false;
         }
-        Long id;
+        long id;
         try {
             id = Long.parseLong(value[0]);
         }
         catch (NumberFormatException x)
         {
-            Cookie_manager.remove_cookie(cookie, resp);
+            Cookie_manager.remove_cookie("user", req, resp);
             return false;
         }
         User user=entityManager.find(User.class, id);
@@ -37,7 +34,7 @@ public class Login_manager
         {
             return true;
         }
-        Cookie_manager.remove_cookie(cookie, resp);
+        Cookie_manager.remove_cookie("user", req, resp);
         return false;
     }
 }

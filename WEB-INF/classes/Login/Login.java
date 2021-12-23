@@ -1,18 +1,21 @@
 package Login;
 
-import cookie.Cookie_manager;
+import Exception.Shop_exception_not_login;
+import Exception.Shop_exception_format;
 import db.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -21,69 +24,63 @@ import org.apache.commons.codec.digest.DigestUtils;
 @WebServlet(value="/api/login", loadOnStartup = 0)
 public class Login extends HttpServlet
 {
-    private static EntityManagerFactory sessionFactory;
-    static
-    {
-        sessionFactory = Persistence.createEntityManagerFactory( "myjpa" );
-    }
+    private static final EntityManagerFactory sessionFactory = Persistence.createEntityManagerFactory( "myjpa" );
 
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        resp.setContentType("application/json;charset=utf-8");
+        Output output=new Output();
+        output.ret=-1;
+        ObjectMapper objectMapper = new ObjectMapper();
+        PrintWriter pw=resp.getWriter();
+        EntityManager entityManager = sessionFactory.createEntityManager();
         try
         {
-            resp.setContentType("application/json;charset=utf-8");
-            Output output=new Output();
-            ObjectMapper objectMapper = new ObjectMapper();
-            PrintWriter pw=resp.getWriter();
-            try {
-                EntityManager entityManager = sessionFactory.createEntityManager();
-                {
-                    Cookie[] cookies= req.getCookies();
-                    if (cookies != null) {
-                        for (Cookie i : cookies) {
-                            if (i.getName().equals("user"))
-                            {
-                                if (Login_manager.judge_fix_login(i, entityManager, req, resp)) {
-                                    entityManager.close();
-                                    output.ret = 1;
-                                    objectMapper.writeValue(pw, output);
-                                    return;
-                                }
-                                break;
+            // 验证是否已经登陆
+            {
+                Cookie[] cookies= req.getCookies();
+                if (cookies != null) {
+                    for (Cookie i : cookies) {
+                        if (i.getName().equals("user"))
+                        {
+                            if (!Login_manager.judge_fix_login(i, entityManager, req, resp)) {
+                                throw new Shop_exception_not_login();
                             }
+                            break;
                         }
                     }
                 }
-                Input input = objectMapper.readValue(req.getReader(), Input.class);
-                if (input.id == null || input.password == null) {
-                    entityManager.close();
-                    throw new Exception();
-                }
-                User user=entityManager.find(User.class, input.id);
-                if (user != null && user.password.equals( input.password)) {
-                    output.ret = 0;
-                    Cookie cookie=new Cookie("user", input.id.toString() + '-' + DigestUtils.md5Hex(req.getRemoteAddr() + req.getHeader("User-Agent") + input.password));
-                    cookie.setMaxAge(60*60*24*365);
-                    cookie.setAttribute("SameSite", "Strict");
-                    cookie.setPath(req.getContextPath());
-                    resp.addCookie(cookie);
-                }
-                else
-                {
-                    output.ret=-1;
-                }
-                entityManager.close();
             }
-            catch (Exception x) {
-                output.ret = -1;
-                objectMapper.writeValue(pw, output);
-                return;
+
+            Input input = objectMapper.readValue(req.getReader(), Input.class);
+            if (input.id == null || input.password == null) {
+                throw new Shop_exception_format();
             }
-            objectMapper.writeValue(pw, output);
+            User user=entityManager.find(User.class, input.id);
+            if (user != null && user.password.equals( input.password)) {
+                Cookie cookie=new Cookie("user", input.id.toString() + '-' + DigestUtils.md5Hex(req.getRemoteAddr() + req.getHeader("User-Agent") + input.password));
+                cookie.setMaxAge(60*60*24*365);
+                cookie.setAttribute("SameSite", "Strict");
+                cookie.setPath(req.getContextPath());
+                resp.addCookie(cookie);
+                output.ret = 0;
+            }
+            else
+            {
+                output.ret=-4;
+            }
         }
-        catch (Exception p)
+        catch(Shop_exception_not_login x)
         {
+            output.ret = -2;
+        }
+        catch (Shop_exception_format x)
+        {
+            output.ret = -3;
+        }
+        finally {
+            entityManager.close();
+            objectMapper.writeValue(pw, output);
         }
     }
 

@@ -18,7 +18,7 @@ function global_layout()
     for (let i of document.getElementsByClassName('radius') )
     {
         let x=i.getAttribute('radius').split(' ');
-        if ( x[0] == "width" )
+        if ( x[0] === "width" )
         {
             i.style.borderRadius=i.parentElement.clientWidth*x[1]+'px';
         }
@@ -33,6 +33,7 @@ function global_layout()
         {
             i.setAttribute(i2, root_path+i.getAttribute(i2));
         }
+        i.removeAttribute("set_root_items");
     }
     return body_width;
 }

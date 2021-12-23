@@ -30,7 +30,7 @@ function add_item()
             form_data.append("file"+index, i);
             index++;
         }
-        form_data.append("files_num", index);
+        form_data.append("files_num", index.toString());
     }
 
 
@@ -39,11 +39,11 @@ function add_item()
     xmlHttp.send(form_data);
 
     xmlHttp.onreadystatechange = (e) => {
-        if (xmlHttp.readyState==4)
+        if (xmlHttp.readyState===4)
         {
-            if (xmlHttp.status==200)
+            if (xmlHttp.status===200)
             {
-                if (xmlHttp.response.ret == null || xmlHttp.response.ret!=0)
+                if (xmlHttp.response.ret == null || xmlHttp.response.ret!==0)
                 {
                     alert("创建商品失败！");
                 }
@@ -69,7 +69,7 @@ window.onload=function()
             function()
             {
                 ++x;
-                if (x==2)
+                if (x===2)
                 {
                     this_layout(global_layout());
                     window.onresize=function()
@@ -87,7 +87,7 @@ window.onload=function()
             function()
             {
                 ++x;
-                if (x==2)
+                if (x===2)
                 {
                     this_layout(global_layout());
                     window.onresize=function()
@@ -103,7 +103,7 @@ window.onload=function()
         function()
         {
             ++x;
-            if (x==2)
+            if (x===2)
             {
                 this_layout(global_layout());
                 window.onresize=function()

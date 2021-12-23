@@ -2,11 +2,17 @@
 <html lang="zh">
     <head>
         <meta charset="UTF-8">
+
+        <script type="text/javascript">
+            const root=".."
+        </script>
+        <script defer type="text/javascript" src="../include/js/base.js"></script>
+
         <script defer type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script defer type="text/javascript" src="js/base.js"></script>
         <script defer type="text/javascript" src="../include/js/cookie.js"></script>
         <script defer type="text/javascript" src="../include/js/layout.js"></script>
         <script defer type="text/javascript" src="../include/js/md5.min.js"></script>
+        <script defer type="text/javascript" src="../include/js/login.js"></script>
         <script defer type="text/javascript" src="js/onload.js"></script>
         <link rel="stylesheet" type="text/css" href="../include/css/global.css">
     </head>
@@ -14,8 +20,7 @@
         <div id="header">
         </div>
         <div id="main">
-            <form name="add_item" action="javascript:add_item();">
-            <!--<form name="add_item" enctype="multipart/form-data" method="post" action="/api/test">-->
+            <form name="add_item" enctype="multipart/form-data" method="post" action="javascript:add_item();">
                 商品名称：<input type="text" name="name">
                 价格：<input type="text" name="price">
                 库存：<input type="text" name="stock">

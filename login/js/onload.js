@@ -63,7 +63,7 @@ window.onload=function()
             function()
             {
                 ++x;
-                if (x==2)
+                if (x===2)
                 {
                     this_layout(global_layout());
                     window.onresize=function()
@@ -81,7 +81,7 @@ window.onload=function()
             function()
             {
                 ++x;
-                if (x==2)
+                if (x===2)
                 {
                     this_layout(global_layout());
                     window.onresize=function()
@@ -97,7 +97,7 @@ window.onload=function()
         function()
         {
             ++x;
-            if (x==2)
+            if (x===2)
             {
                 this_layout(global_layout());
                 window.onresize=function()
