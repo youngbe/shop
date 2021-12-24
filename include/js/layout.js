@@ -10,10 +10,8 @@ function global_layout()
     {
         width_max=screen.height*2.2;
     }
-    document.getElementById('nav').style.maxWidth=document.getElementById('footer-main').style.maxWidth=width_max+'px';
     document.getElementById('main').style.maxWidth=width_max*0.96+'px';
-    let body_width=document.body.clientWidth;
-    document.body.style.fontSize=body_width*0.01+'px';
+    const main_width=document.getElementById('main').clientWidth;
 
     for (let i of document.getElementsByClassName('radius') )
     {
@@ -33,7 +31,19 @@ function global_layout()
         {
             i.setAttribute(i2, root_path+i.getAttribute(i2));
         }
-        i.removeAttribute("set_root_items");
+        i.classList.remove("set_root");
     }
-    return body_width;
+    for ( let i of document.getElementsByClassName('item_board') )
+    {
+        i.style.gridTemplateColumns="repeat(auto-fill, "+main_width*0.16+"px)";
+        i.style.gridTemplateRows="repeat(auto-fill, "+main_width*0.131+"px)";
+        i.style.gridRowGap=main_width*0.015+"px";
+        i.style.gridColumnGap=main_width*0.007+"px";
+        i.style.gridAutoRows=main_width*0.16+"px";
+    }
+    for ( let i of document.getElementsByClassName('font_size') )
+    {
+        i.style.fontSize=parseFloat(i.getAttribute("font_size"))*main_width+'px';
+    }
+    return width_max;
 }
