@@ -31,6 +31,7 @@ function add_item()
     form_data.append("name", form["name"].value);
     form_data.append("price", form['price'].value);
     form_data.append("stock", form["stock"].value);
+    form_data.append("cover", form['cover'].files[0]);
     {
         let index=0;
         for (let i of form["img"].files)
