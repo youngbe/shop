@@ -17,4 +17,12 @@ public class Item {
 
     @Column(nullable=false, unique=false)
     public Long stock;
+
+    @ManyToOne
+    @JoinColumn(name="cover", referencedColumnName="id", nullable = false)
+    public File_pool cover;
+
+    @ManyToOne
+    @JoinColumn(name="user", referencedColumnName="id", nullable = false)
+    public User user;
 }

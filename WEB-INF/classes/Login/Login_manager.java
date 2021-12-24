@@ -12,13 +12,13 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class Login_manager
 {
     // 传入参数：name为user的cookie
-    public static boolean judge_fix_login(Cookie cookie, EntityManager entityManager, HttpServletRequest req, HttpServletResponse resp)
+    public static User judge_fix_login(Cookie cookie, EntityManager entityManager, HttpServletRequest req, HttpServletResponse resp)
     {
         String[] value = cookie.getValue().split("-");
         if (value.length !=2)
         {
             Cookie_manager.remove_cookie("user", req, resp);
-            return false;
+            return null;
         }
         long id;
         try {
@@ -27,14 +27,14 @@ public class Login_manager
         catch (NumberFormatException x)
         {
             Cookie_manager.remove_cookie("user", req, resp);
-            return false;
+            return null;
         }
         User user=entityManager.find(User.class, id);
         if (user != null && value[1].equals( DigestUtils.md5Hex(req.getRemoteAddr()+req.getHeader("User-Agent")+user.password) ))
         {
-            return true;
+            return user;
         }
         Cookie_manager.remove_cookie("user", req, resp);
-        return false;
+        return null;
     }
 }

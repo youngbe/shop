@@ -43,7 +43,9 @@ public class Login extends HttpServlet
                     for (Cookie i : cookies) {
                         if (i.getName().equals("user"))
                         {
-                            if (!Login_manager.judge_fix_login(i, entityManager, req, resp)) {
+                            if(Login_manager.judge_fix_login(i, entityManager, req, resp)!=null)
+                            {
+                                //已经登陆
                                 throw new Shop_exception_not_login();
                             }
                             break;
@@ -72,7 +74,8 @@ public class Login extends HttpServlet
         }
         catch(Shop_exception_not_login x)
         {
-            output.ret = -2;
+            //已经登陆
+            output.ret = -5;
         }
         catch (Shop_exception_format x)
         {

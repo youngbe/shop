@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import db.File_pool;
 import db.Item_Image;
 import db.Item;
+import db.User;
 import jakarta.persistence.*;
 import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
@@ -32,17 +33,20 @@ public class add_item extends HttpServlet
         EntityManager entityManager = sessionFactory.createEntityManager();
         try {
             // 验证是否已经登陆
+            User user=null;
             {
                 Cookie[] cookies= req.getCookies();
                 if (cookies != null) {
                     for (Cookie i : cookies) {
                         if (i.getName().equals("user"))
                         {
-                            if (!Login_manager.judge_fix_login(i, entityManager, req, resp)) {
-                                throw new Shop_exception_not_login();
-                            }
+                            user=Login_manager.judge_fix_login(i, entityManager, req, resp);
                             break;
                         }
+                    }
+                    if (user==null)
+                    {
+                        throw new Shop_exception_not_login();
                     }
                 }
             }
@@ -70,6 +74,11 @@ public class add_item extends HttpServlet
             {
                 throw new Shop_exception_format();
             }
+            final Part cover=req.getPart("cover");
+            if (cover==null)
+            {
+                throw new Shop_exception_format();
+            }
             final Part[] part = new Part[num];
             for (int i = 0; i < num; i++) {
                 part[i] = req.getPart("file" + i);
@@ -86,6 +95,18 @@ public class add_item extends HttpServlet
                 new_item.name = name;
                 new_item.stock = stock;
                 new_item.price = price;
+                new_item.user=user;
+                File_pool cover_file = new File_pool();
+                entityManager.persist(cover_file);
+                try {
+                    cover.write(File_pool.path + cover_file.id);
+                }
+                catch(IOException x)
+                {
+                    System.out.println("异常发生：写入磁盘失败！");
+                    throw x;
+                }
+                new_item.cover=cover_file;
                 entityManager.persist(new_item);
                 for (Part i : part) {
                     File_pool new_img_file = new File_pool();
