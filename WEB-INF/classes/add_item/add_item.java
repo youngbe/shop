@@ -96,6 +96,7 @@ public class add_item extends HttpServlet
                 new_item.stock = stock;
                 new_item.price = price;
                 new_item.user=user;
+                new_item.on_market=0;
                 File_pool cover_file = new File_pool();
                 entityManager.persist(cover_file);
                 try {

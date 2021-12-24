@@ -33,8 +33,24 @@ window.onload=function()
         $('#header').load(root_path+"include/header_login.html", this_layout);
     }
     $('#footer').load(root_path+"include/footer.html", this_layout);
-    {
-        let item=document.createElement('div');
-        document_add_item(document.getElementById('main'), 1);
+
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET",  root_path+'api/get_random_items?num=20');
+    xmlHttp.responseType="json";
+    xmlHttp.send( );
+
+    xmlHttp.onreadystatechange = (e) => {
+        if (xmlHttp.readyState===4) {
+            if (xmlHttp.status === 200) {
+                if (xmlHttp.response.ret == null || xmlHttp.response.ret !== 0) {
+                    console.log("failed");
+                } else {
+                    for(let i of xmlHttp.response.items)
+                    {
+                        document_add_item(document.getElementById('main'), i);
+                    }
+                }
+            }
+        }
     }
 };

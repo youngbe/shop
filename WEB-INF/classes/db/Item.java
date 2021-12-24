@@ -18,6 +18,10 @@ public class Item {
     @Column(nullable=false, unique=false)
     public Long stock;
 
+    //0代表在售，非0代表下架
+    @Column(nullable = false, unique = false)
+    public byte on_market;
+
     @ManyToOne
     @JoinColumn(name="cover", referencedColumnName="id", nullable = false)
     public File_pool cover;
