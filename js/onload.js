@@ -2,7 +2,6 @@ function this_layout()
 {
     const width_max=global_layout();
     const main_width=document.getElementById('main').clientWidth;
-    console.log(main_width);
     let x;
     if ( (x=document.getElementById('nav')) != null )
     {

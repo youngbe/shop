@@ -55,7 +55,7 @@ body
     background:  rgba(0,0,0,0);
 }
 
-.item_board
+/*.item_board
 {
     display: flex;
     flex-flow: wrap;
@@ -65,7 +65,7 @@ body
     align-items: flex-start;
     align-content: flex-start;
     overflow: auto;
-}
+}*/
 
 .item_board
 {

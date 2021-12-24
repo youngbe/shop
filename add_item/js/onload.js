@@ -1,15 +1,23 @@
-function this_layout(body_width)
+function this_layout()
 {
-    document.getElementById('head-shader').style.height=body_width*0.06+'px';
-    document.getElementById('header_video').style.height=body_width*0.094+'px';
-}
-
-function real_onload()
-{
-    if ( get_cookies().get_value( 'user' ) == null )
+    const width_max=global_layout();
+    const main_width=document.getElementById('main').clientWidth;
+    let x;
+    if ( (x=document.getElementById('nav')) != null )
     {
-        alert("您尚未登陆！");
-        location.replace(root_path+'login');
+        x.style.maxWidth=width_max+'px';
+    }
+    if ( (x=document.getElementById('head-shader')) != null )
+    {
+        x.style.height=main_width*0.08+'px';
+    }
+    if ( (x=document.getElementById('header_video')) != null )
+    {
+        x.style.height=main_width*0.1061+'px';
+    }
+    if ( (x=document.getElementById('footer-main')) != null )
+    {
+        x.style.maxWidth=width_max+'px';
     }
 }
 
@@ -62,56 +70,19 @@ function add_item()
 
 window.onload=function()
 {
-    let x=0;
+    window.onresize=this_layout;
     if ( get_cookies().get_value( 'user' ) == null )
     {
-        $('#header').load(root_path+"include/header_not_login.html",
-            function()
-            {
-                ++x;
-                if (x===2)
-                {
-                    this_layout(global_layout());
-                    window.onresize=function()
-                    {
-                        this_layout(global_layout());
-                    };
-                    real_onload();
-                }
-            }
-        );
+        $('#header').load(root_path+"include/header_not_login.html", this_layout);
     }
     else
     {
-        $('#header').load(root_path+"include/header_login.html",
-            function()
-            {
-                ++x;
-                if (x===2)
-                {
-                    this_layout(global_layout());
-                    window.onresize=function()
-                    {
-                        this_layout(global_layout());
-                    };
-                    real_onload();
-                }
-            }
-        );
+        $('#header').load(root_path+"include/header_login.html", this_layout);
     }
-    $('#footer').load(root_path+"include/footer.html",
-        function()
-        {
-            ++x;
-            if (x===2)
-            {
-                this_layout(global_layout());
-                window.onresize=function()
-                {
-                    this_layout(global_layout());
-                };
-                real_onload();
-            }
-        }
-    );
+    $('#footer').load(root_path+"include/footer.html", this_layout);
+    if ( get_cookies().get_value( 'user' ) == null )
+    {
+        alert("您尚未登陆！");
+        location.replace(root_path+'login');
+    }
 };
