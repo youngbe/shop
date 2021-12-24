@@ -1,5 +1,34 @@
 function document_add_item(element, id)
 {
+    const xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST",  root_path+'api/get_item_simple');
+    xmlHttp.setRequestHeader("Content-Type", "application/json");
+    xmlHttp.responseType="json";
+    xmlHttp.send( JSON.stringify({"id": id}));
+
+    xmlHttp.onreadystatechange = (e) => {
+        if (xmlHttp.readyState===4)
+        {
+            if (xmlHttp.status===200)
+            {
+                if (xmlHttp.response.ret == null || xmlHttp.response.ret!==0)
+                {
+                    return;
+                }
+                else
+                {
+                    console.log(xmlHttp.response);
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
+
+
     let item=document.createElement('div');
     //item.style.flexFlow='row wrap';
     //item.style.alignContent='flex-start';
