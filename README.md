@@ -20,7 +20,7 @@ apt --no-install-recommends -y install openjdk-18-jdk-headless mysql-server
 4. 拷贝jdbc驱动至`${tomcat}/webapps/${自定义APP名}/WEB-INF/lib/`
 5. 修改`${tomcat}/webapps/${自定义APP名}/WEB-INF/classes/META-INF/persistence.xml`文件，配置数据库信息
 
-![image](https://user-images.githubusercontent.com/24429886/147379409-3e13c3d9-b9a6-4aed-a9a8-2eb63f951948.png)
+![image](img/1.png)
 
 6. 修改`${tomcat}/webapps/${自定义APP名}/WEB-INF/classes/db/File_pool.java`文件，修改`public final static String path`为一个目录用于存放上传的文件，目录的后面一定要加上`/`，请不要和网站目录重叠
 7. 编译网站
