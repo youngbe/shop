@@ -57,6 +57,7 @@ public class Get_item_simple extends HttpServlet {
                 output.cover = item.cover.id;
                 output.stock = item.stock;
                 output.releaser = item.user.nick_name;
+                output.on_market= item.on_market;
             }
             finally {
                 entityManager.close();
@@ -90,4 +91,5 @@ class Output
     public long stock;
     public String releaser;
     public long cover;
+    public byte on_market;
 }

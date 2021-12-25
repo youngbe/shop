@@ -26,15 +26,15 @@
             <a class="mid opc">按钮1</a>
             <a class="mid opc">按钮2</a>
         </div>
-        <form id="nav-center" style="
-                                     width: 30%;
-                                     padding-left: 0.5%;
-                                     padding-right: 0.5%;
-                                     flex-flow: row;
-                                     justify-content: space-between;
-                                     " class="radius" radius="height 0.3">
+        <form id="nav-center" name="search" action='javascript:(function(){
+        localStorage.search_key=document.forms["search"]["keyword"].value;
+        if (localStorage.search_key!="")
+        {
+            location.replace(root_path+"search");
+        }
+        })();' style="width: 30%; padding-left: 0.5%; padding-right: 0.5%; flex-flow: row; justify-content: space-between" class="radius" radius="height 0.3">
             <input type="text" name="keyword" class="opc">
-            <input type="submit" class="mid opc">
+            <input type="submit" class="mid opc" value="搜索">
         </form>
         <div id="nav-right" style="
                                    flex-flow: row-reverse;
@@ -42,14 +42,13 @@
                                    text-shadow: 0 1px 1px rgb(0 0 0 / 30%);
                                    color: #fff;
                                    " class="opc font_size" font_size="0.0095">
-            <a style="
-                      width: 15%;
-                      " class="mid opc" href="cart" class="set_root" set_root_items="href">
-                购物车
+            <a style="width: 15%" class="mid opc set_root" href="manage_items" set_root_items="href">
+                管理我的商品
             </a>
-            <a style="
-                      width: 15%;
-                      " class="mid opc" href="javascript:logout();">
+            <!--<a style="width: 15%" class="mid opc set_root" href="cart" set_root_items="href">
+                购物车
+            </a>-->
+            <a style="width: 15%" class="mid opc" href="javascript:logout();">
                 注销
             </a>
         </div>

@@ -35,7 +35,7 @@ window.onload=function()
     $('#footer').load(root_path+"include/footer.html", this_layout);
 
     const xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET",  root_path+'api/get_random_items?num=20');
+    xmlHttp.open("GET",  root_path+'api/search_items?key='+encodeURIComponent(localStorage.search_key));
     xmlHttp.responseType="json";
     xmlHttp.send( );
 

@@ -23,15 +23,15 @@
             <a class="mid opc">按钮1</a>
             <a class="mid opc">按钮2</a>
         </div>
-        <form id="nav-center" style="
-                                     width: 30%;
-                                     padding-left: 0.5%;
-                                     padding-right: 0.5%;
-                                     flex-flow: row;
-                                     justify-content: space-between;
-                                     " class="radius" radius="height 0.3">
+        <form id="nav-center" name="search" action='javascript:(function(){
+        localStorage.search_key=document.forms["search"]["keyword"].value;
+        if (localStorage.search_key!="")
+        {
+            location.replace(root_path+"search");
+        }
+        })();' style="width: 30%; padding-left: 0.5%; padding-right: 0.5%; flex-flow: row; justify-content: space-between" class="radius" radius="height 0.3">
             <input type="text" name="keyword" class="opc">
-            <input type="submit" class="mid opc">
+            <input type="submit" class="mid opc" value="搜索">
         </form>
         <div id="nav-right" style="
                                    flex-flow: row-reverse;
