@@ -50,32 +50,53 @@ function document_add_manage_item(element, id)
                     {
                         info.innerHTML+="商品在售;";
                         button.innerHTML="下架商品";
+                        button.onclick=function ()
+                        {
+                            const xmlHttp = new XMLHttpRequest();
+                            xmlHttp.open("GET",  root_path+'api/unmarket_item?id='+id);
+                            xmlHttp.setRequestHeader("Content-Type", "application/json");
+                            xmlHttp.responseType="json";
+                            xmlHttp.send();
+                            xmlHttp.onreadystatechange = (e) => {
+                                if (xmlHttp.readyState===4) {
+                                    if (xmlHttp.status === 200 && xmlHttp.response.ret != null && xmlHttp.response.ret === 0) {
+                                        alert("商品下架成功！");
+                                        location.reload();
+                                    }
+                                    else
+                                    {
+                                        alert("商品下架失败！");
+                                    }
+                                }
+                            }
+                        };
                     }
                     else
                     {
                         info.innerHTML+="商品已下架;";
                         button.innerHTML="上架商品";
-                    }
-                    button.onclick=function ()
-                    {
-                        const xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open("GET",  root_path+'api/unmarket_item?id='+id);
-                        xmlHttp.setRequestHeader("Content-Type", "application/json");
-                        xmlHttp.responseType="json";
-                        xmlHttp.send();
-                        xmlHttp.onreadystatechange = (e) => {
-                            if (xmlHttp.readyState===4) {
-                                if (xmlHttp.status === 200 && xmlHttp.response.ret != null && xmlHttp.response.ret === 0) {
-                                    alert("商品下架成功！");
-                                    location.reload();
-                                }
-                                else
-                                {
-                                    alert("商品下架失败！");
+                        button.onclick=function ()
+                        {
+                            const xmlHttp = new XMLHttpRequest();
+                            xmlHttp.open("GET",  root_path+'api/onmarket_item?id='+id);
+                            xmlHttp.setRequestHeader("Content-Type", "application/json");
+                            xmlHttp.responseType="json";
+                            xmlHttp.send();
+                            xmlHttp.onreadystatechange = (e) => {
+                                if (xmlHttp.readyState===4) {
+                                    if (xmlHttp.status === 200 && xmlHttp.response.ret != null && xmlHttp.response.ret === 0) {
+                                        alert("商品上架成功！");
+                                        location.reload();
+                                    }
+                                    else
+                                    {
+                                        alert("商品上架失败！");
+                                    }
                                 }
                             }
-                        }
-                    };
+                        };
+                    }
+
 
                     item.append(info);
                     item.append(button);

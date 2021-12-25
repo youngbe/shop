@@ -106,7 +106,7 @@ function document_add_item(element, id)
                     stock.style.whiteSpace='nowrap';
                     stock.classList.add("font_size");
                     stock.setAttribute("font_size", "0.007");
-                    stock.innerHTML=xmlHttp.response.stock;
+                    stock.innerHTML='库存：'+xmlHttp.response.stock;
 
 
 
