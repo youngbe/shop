@@ -38,21 +38,9 @@ public class Login extends HttpServlet
         try
         {
             // 验证是否已经登陆
+            if(Login_manager.judge_fix_login(entityManager, req, resp)!=null)
             {
-                Cookie[] cookies= req.getCookies();
-                if (cookies != null) {
-                    for (Cookie i : cookies) {
-                        if (i.getName().equals("user"))
-                        {
-                            if(Login_manager.judge_fix_login(i, entityManager, req, resp)!=null)
-                            {
-                                //已经登陆
-                                throw new Shop_exception_already_login();
-                            }
-                            break;
-                        }
-                    }
-                }
+                throw new Shop_exception_already_login();
             }
 
             Input input = objectMapper.readValue(req.getReader(), Input.class);

@@ -11,6 +11,19 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class Login_manager
 {
+    public static User judge_fix_login(EntityManager entityManager, HttpServletRequest req, HttpServletResponse resp)
+    {
+        Cookie[] cookies= req.getCookies();
+        if (cookies != null) {
+            for (Cookie i : cookies) {
+                if (i.getName().equals("user"))
+                {
+                    return judge_fix_login(i, entityManager, req, resp);
+                }
+            }
+        }
+        return null;
+    }
     // 传入参数：name为user的cookie
     public static User judge_fix_login(Cookie cookie, EntityManager entityManager, HttpServletRequest req, HttpServletResponse resp)
     {

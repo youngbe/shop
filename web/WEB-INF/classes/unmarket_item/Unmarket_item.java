@@ -42,20 +42,9 @@ public class Unmarket_item extends HttpServlet
             try
             {
                 // 验证是否已经登陆
-                User user = null;
-                {
-                    Cookie[] cookies = req.getCookies();
-                    if (cookies != null) {
-                        for (Cookie i : cookies) {
-                            if (i.getName().equals("user")) {
-                                user = Login_manager.judge_fix_login(i, entityManager, req, resp);
-                                break;
-                            }
-                        }
-                        if (user == null) {
-                            throw new Shop_exception_not_login();
-                        }
-                    }
+                User user = Login_manager.judge_fix_login(entityManager, req, resp);
+                if (user == null) {
+                    throw new Shop_exception_not_login();
                 }
                 Item item=entityManager.find(Item.class, id);
                 if (item ==null)
