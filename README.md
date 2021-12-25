@@ -1,3 +1,9 @@
+# 信息
+姓名：谢元彬
+
+学号：201930344121
+
+网站：https://www.xybnb.com/myshop
 # 部署步骤
 ## 1. 选择服务器
 至少支持`openjdk-17-jdk`、`mysql 8.0`
