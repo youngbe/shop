@@ -26,35 +26,37 @@ public class Get_file extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
+        long id=Long.parseLong(req.getParameter("id"));
+        FileInputStream fileInputStream;
         resp.setContentType("application/octet-stream");
-        ServletOutputStream outputStream=resp.getOutputStream();
-        try
+        EntityManager entityManager = sessionFactory.createEntityManager();
+        try {
+            File_pool item = entityManager.find(File_pool.class, id);
+            if (item == null) {
+                throw new Shop_exception_item_not_found();
+            }
+            fileInputStream = new FileInputStream(File_pool.path + item.id);
+        }
+        catch (Throwable x)
         {
-
-            long id=Long.parseLong(req.getParameter("id"));
-            FileInputStream fileInputStream;
-            EntityManager entityManager = sessionFactory.createEntityManager();
+            entityManager.close();
+            return;
+        }
+        try {
+            entityManager.close();
+            int i;
+            ServletOutputStream outputStream=resp.getOutputStream();
             try {
-                File_pool item = entityManager.find(File_pool.class, id);
-                if (item == null) {
-                    throw new Shop_exception_item_not_found();
+                while ((i = fileInputStream.read()) != -1) {
+                    outputStream.write(i);
                 }
-                fileInputStream = new FileInputStream(File_pool.path + item.id);
             }
             finally {
-                entityManager.close();
+                outputStream.close();
             }
-            int i;
-            while ( (i=fileInputStream.read())!=-1 )
-            {
-                outputStream.write(i);
-            }
-            fileInputStream.close();
-            outputStream.close();
         }
-        catch(Throwable x)
-        {
-            return;
+        finally {
+            fileInputStream.close();
         }
     }
 

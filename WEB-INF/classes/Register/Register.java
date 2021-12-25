@@ -1,7 +1,8 @@
 package Register;
 
 import Exception.Shop_exception_format;
-import Exception.Shop_exception_not_login;
+import Exception.Shop_exception_already_login;
+import Exception.Shop_exception_login;
 import Login.Login_manager;
 import db.*;
 import jakarta.persistence.*;
@@ -36,19 +37,18 @@ public class Register extends HttpServlet
         {
             // 验证是否已经登陆
             {
-                User user=null;
                 Cookie[] cookies= req.getCookies();
                 if (cookies != null) {
                     for (Cookie i : cookies) {
                         if (i.getName().equals("user"))
                         {
-                            user=Login_manager.judge_fix_login(i, entityManager, req, resp);
+                            if(Login_manager.judge_fix_login(i, entityManager, req, resp)!=null)
+                            {
+                                //已经登陆
+                                throw new Shop_exception_already_login();
+                            }
                             break;
                         }
-                    }
-                    if (user==null)
-                    {
-                        throw new Shop_exception_not_login();
                     }
                 }
             }
@@ -73,14 +73,14 @@ public class Register extends HttpServlet
 
                 entityTransaction.commit();
             }
-            catch (Exception x)
+            catch (Throwable x)
             {
                 entityTransaction.rollback();
                 throw x;
             }
             output.ret = 0;
         }
-        catch(Shop_exception_not_login x)
+        catch(Shop_exception_login x)
         {
             output.ret = -2;
         }

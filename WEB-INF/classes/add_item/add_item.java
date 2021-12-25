@@ -2,6 +2,7 @@ package add_item;
 
 import Exception.Shop_exception_format;
 import Exception.Shop_exception_not_login;
+import Exception.Shop_exception_login;
 import Login.Login_manager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import db.File_pool;
@@ -127,14 +128,14 @@ public class add_item extends HttpServlet
                 }
                 entityTransaction.commit();
             }
-            catch (Exception x)
+            catch (Throwable x)
             {
                 entityTransaction.rollback();
                 throw x;
             }
             output.ret = 0;
         }
-        catch(Shop_exception_not_login x)
+        catch(Shop_exception_login x)
         {
             output.ret = -2;
         }

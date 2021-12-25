@@ -1,6 +1,7 @@
 package Login;
 
-import Exception.Shop_exception_not_login;
+import Exception.Shop_exception_already_login;
+import Exception.Shop_exception_login;
 import Exception.Shop_exception_format;
 import db.*;
 
@@ -46,7 +47,7 @@ public class Login extends HttpServlet
                             if(Login_manager.judge_fix_login(i, entityManager, req, resp)!=null)
                             {
                                 //已经登陆
-                                throw new Shop_exception_not_login();
+                                throw new Shop_exception_already_login();
                             }
                             break;
                         }
@@ -72,10 +73,10 @@ public class Login extends HttpServlet
                 output.ret=-4;
             }
         }
-        catch(Shop_exception_not_login x)
+        catch(Shop_exception_login x)
         {
             //已经登陆
-            output.ret = -5;
+            output.ret = -2;
         }
         catch (Shop_exception_format x)
         {
