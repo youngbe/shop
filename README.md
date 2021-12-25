@@ -22,7 +22,7 @@ apt --no-install-recommends -y install openjdk-18-jdk-headless mysql-server
 
 ![image](https://user-images.githubusercontent.com/24429886/147379409-3e13c3d9-b9a6-4aed-a9a8-2eb63f951948.png)
 
-6. 修改`WEB-INF/classes/db/File_pool.java`文件，修改`public final static String path`为一个目录用于存放上传的文件，请不要和网站目录重叠
+6. 修改`${tomcat}/webapps/${自定义APP名}/WEB-INF/classes/db/File_pool.java`文件，修改`public final static String path`为一个目录用于存放上传的文件，请不要和网站目录重叠
 7. 编译网站
 ```bash
 cd ${tomcat}/webapps/${自定义APP名}/WEB-INF/classes/
