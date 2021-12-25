@@ -18,7 +18,7 @@
 apt update
 apt --no-install-recommends -y install openjdk-18-jdk-headless mysql-server
 ```
-## 4. 创建一个数据库(create database)给网站用
+## 4. 创建一个空白的数据库(create database)给网站用
 ## 5. 部署Tomcat
 1. 设Tomcat的根目录为`${tomcat}`，修改`${tomcat}/conf/server.xml`，设置`maxPostSize="-1" maxParameterCount="-1"`
 2. 将网站源代码中`web`目录下的内容解压到一个临时目录下，设临时目录为`${temp}`
