@@ -20,13 +20,13 @@
         <div id="header">
         </div>
         <div id="main">
-            <form name="add_item" enctype="multipart/form-data" method="post" action="javascript:add_item();">
-                商品名称：<input type="text" name="name">
-                价格：<input type="text" name="price">
-                库存：<input type="text" name="stock">
-                商品封面图：<input type="file" name="cover">
-                商品预览图：<input type="file" multiple="true" name="img">
-                <input type="submit">
+            <form name="add_item" enctype="multipart/form-data" method="post" class="font_size" font_size="0.01" action="javascript:add_item();">
+                <label style="flex-flow: row;line-height: 1.3">商品名称(0-500个字符)：<input type="text" name="name" style="flex-grow: 1;"></label>
+                <label style="flex-flow: row;line-height: 1.3">价格(浮点数)：<input type="text" name="price"></label>
+                <label style="flex-flow: row;line-height: 1.3">库存(整型)：<input type="text" name="stock"></label>
+                <label style="flex-flow: row;line-height: 1.3">商品封面图(必须选择一张图片)：<input type="file" name="cover"></label>
+                <label style="flex-flow: row;line-height: 1.3">商品图(至少选择一张图片)：<input type="file" multiple="true" name="img"></label>
+                <input type="submit" value="点我上架">
             </form>
         </div>
         <div id="footer">

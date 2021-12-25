@@ -18,6 +18,7 @@ import java.io.PrintWriter;
 import java.rmi.ServerException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.codec.digest.DigestUtils;
 
 
 @WebServlet(value="/api/regist", loadOnStartup = 0)
@@ -60,12 +61,11 @@ public class Register extends HttpServlet
                 throw new Shop_exception_format();
             }
 
-
+            User new_user = new User();
             EntityTransaction entityTransaction = entityManager.getTransaction();
             entityTransaction.begin();
             try
             {
-                User new_user = new User();
                 new_user.nick_name = input.nick_name;
                 new_user.password = input.password;
                 entityManager.persist(new_user);
@@ -78,6 +78,14 @@ public class Register extends HttpServlet
                 entityTransaction.rollback();
                 throw x;
             }
+
+            Cookie cookie=new Cookie("user", new_user.id.toString() + '-' + DigestUtils.md5Hex(req.getRemoteAddr() + req.getHeader("User-Agent") + new_user.password));
+            cookie.setMaxAge(60*60*24*365);
+            cookie.setAttribute("SameSite", "Strict");
+            cookie.setPath(req.getContextPath());
+            resp.addCookie(cookie);
+
+
             output.ret = 0;
         }
         catch(Shop_exception_login x)

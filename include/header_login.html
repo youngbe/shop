@@ -31,8 +31,8 @@
             location.replace(root_path+"search");
         }
         })();' style="width: 30%; padding-left: 0.5%; padding-right: 0.5%; flex-flow: row; justify-content: space-between" class="radius" radius="height 0.3">
-            <input type="text" name="keyword" class="opc">
-            <input type="submit" class="mid opc" value="搜索">
+            <input type="text" style="width: 80%" class="opc font_size" font_size="0.009" name="keyword">
+            <input type="submit" class="mid opc font_size" font_size="0.009" value="搜索">
         </form>
         <div id="nav-right" style="
                                    flex-flow: row-reverse;
@@ -40,17 +40,18 @@
                                    text-shadow: 0 1px 1px rgb(0 0 0 / 30%);
                                    color: #fff;
                                    " class="opc font_size" font_size="0.0095">
-            <a style="width: 15%" class="mid opc set_root" href="add_item" set_root_items="href">
-                新增商品
+            <a style="width: 15%" class="mid opc" href="javascript:logout();">
+                注销
             </a>
+
             <a style="width: 15%" class="mid opc set_root" href="manage_items" set_root_items="href">
                 管理我的商品
             </a>
             <!--<a style="width: 15%" class="mid opc set_root" href="cart" set_root_items="href">
                 购物车
             </a>-->
-            <a style="width: 15%" class="mid opc" href="javascript:logout();">
-                注销
+            <a style="width: 15%" class="mid opc set_root" href="add_item" set_root_items="href">
+                新增商品
             </a>
         </div>
     </div>
